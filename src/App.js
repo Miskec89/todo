@@ -1,24 +1,65 @@
-import logo from './logo.svg';
-import './App.css';
+import {useState} from "react"
+import {BrowserRouter as Router, Route} from "react-router-dom"
+import Header from "./Components/Header"
+import Footer from "./Components/Footer"
+import Tasks from "./Components/Tasks"
+import AddTask from "./Components/AddTask"
+import About from "./Components/About"
+import { FaMoon, FaSun } from "react-icons/fa"
 
 function App() {
+  const [showAddTask, setShowAddTask] = useState(false) 
+  const [toggle, setToggle] = useState(false)
+  const [tasks, setTasks] = useState([
+    {
+      id: 1,
+      text: "Food Shopping",
+      day: "Feb 6th at 2:30pm",
+      reminder: "true"
+    }
+  ])
+
+const toggler = () => {
+  toggle ? setToggle(false) : setToggle(true)
+}
+
+const addTask = (task) => {
+  const id = Math.floor(Math.random() * 1000) + 1 ;
+  const newTask = {id, ...task}
+  setTasks([...tasks, newTask])
+}
+
+const deleteTask = (id) => {
+  setTasks(tasks.filter((task) => task.id !== id))
+}
+
+const toggleReminder = (id) => {
+  setTasks(tasks.map((task) => task.id === id? {...task, reminder: !task.reminder} : task ))
+}
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div style={{backgroundColor : toggle? "rgba(3, 31, 48, 0.5)" : "#fff"}} className="container">
+        {toggle ? <FaSun onClick={toggler}/> : <FaMoon onClick={toggler}/>}
+        <Header  onAdd={() => setShowAddTask(!showAddTask)} showAddStatus={showAddTask} />
+        
+        <Route 
+          path = '/' 
+          exact 
+          render={(props) => 
+          (
+            <>
+              { showAddTask && <AddTask onAdd={addTask} />}
+              {tasks.length > 0 ? (<Tasks  tasks={tasks} onDelete={deleteTask} 
+              onToggle={toggleReminder} />) :
+              ("No Tasks to Show")
+              }
+           </>
+          )} />
+        <Route path="/about" component={About}/>
+        <Footer/>
+      </div>
+    </Router>
   );
 }
 
