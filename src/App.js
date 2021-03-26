@@ -1,5 +1,5 @@
 import {useState} from "react"
-import {BrowserRouter as Router, Route} from "react-router-dom"
+import {HashRouter as Router, Route} from "react-router-dom"
 import Header from "./Components/Header"
 import Footer from "./Components/Footer"
 import Tasks from "./Components/Tasks"
