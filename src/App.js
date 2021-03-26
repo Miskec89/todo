@@ -13,7 +13,7 @@ function App() {
   const [tasks, setTasks] = useState([
     {
       id: 1,
-      text: "Food Shopping",
+      text: "Shopping",
       day: "Feb 6th at 2:30pm",
       reminder: "true"
     }
