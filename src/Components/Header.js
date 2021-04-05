@@ -5,7 +5,7 @@ import Button from "./Button"
 
 const Header = ({title, onAdd, showAddStatus}) => {
     const location = useLocation()
-    console.log(location)
+    
     return (
         <header className="header">
             <h1>{title}</h1>
