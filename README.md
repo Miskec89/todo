@@ -1,6 +1,6 @@
 # React Todo app
 
-This project use React to manage tasks. You can create, edit and delete task.
+This project use React to manage tasks. You can create, edit and delete task. </br>
 JSON server is used in this project.
 
 1 Install the required dependencies.
