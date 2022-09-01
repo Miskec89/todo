@@ -7,10 +7,9 @@ JSON server is used in this project. </br>
 npm install </br>
 2. Install JSON Server locally. </br>
 npm i json-server </br>
-3.Start React app. </br>
-npm start </br>
-4. Start JSON server. </br>
-npm run server
+3. Start React app. </br>
+npm start
+
 
 
 
